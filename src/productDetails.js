@@ -7,12 +7,12 @@
   - Uma string;
 
   Comportamento:
-  productDetails('Alcool gel', 'Máscara') // Retorna:
+  productDetails('Álcool gel', 'Máscara') // Retorna:
   [
     {
-      name: 'Alcool gel'
+      name: 'Álcool gel'
       details: {
-        productId: 'Alcool gel123'
+        productId: 'Álcool gel123'
       }
     },
     {
