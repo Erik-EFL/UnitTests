@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 
-const getCharacter = require('../src/getCharacter');
+const getCharacter = require("../src/getCharacter");
 
 /*
 Essa função recebe como parâmetro o nome de um personagem e retorna um objeto com seu nome, classe e frases.
@@ -40,21 +40,47 @@ Retorno:
   phrases: [ 'Not today', 'A girl has no name.' ]
 }
 */
+const compare = (one, two) => {
+  const regex = new RegExp(one, "gi");
+  const compar = regex.test(two);
 
-describe('9 - Implemente os casos de teste da função `getCharacter`', () => {
-  it('Verifica se a função `getCharacter` retorna o objeto do personagem corretamente.', () => {
+  return compar ? true : false;
+};
+
+describe("9 - Implemente os casos de teste da função `getCharacter`", () => {
+  it("Verifica se a função `getCharacter` retorna o objeto do personagem corretamente.", () => {
     // ESCREVA SEUS TESTES ABAIXO:
     // Teste se a função, quando não recebe nenhum parâmetro, retorna undefined.
-    expect(getCharacter('')).toBeUndefined()
+    expect(getCharacter("")).toBeUndefined();
     // Teste se a função retorna o objeto correto para o parâmetro 'Arya',
-
+    expect(getCharacter("Arya")).toEqual({
+      name: "Arya Stark",
+      class: "Rogue",
+      phrases: ["Not today", "A girl has no name."],
+    });
     // Teste se a função retorna o objeto correto para o parâmetro 'Brienne',
-
+    expect(getCharacter("Brienne")).toEqual({
+      name: "Brienne Tarth",
+      class: "Knight",
+      phrases: [
+        "Im No Lady, Your Grace.",
+        "I, Brienne Of Tarth, Sentence You To Die.",
+      ],
+    });
     // Teste se a função retorna o objeto correto para o parâmetro 'Melissandre',
-
+    expect(getCharacter("Melissandre")).toEqual({
+      name: "Melissandre",
+      class: "Necromancer",
+      phrases: [
+        "Death By Fire Is The Purest Death.",
+        "For The Night Is Dark And Full Of Terrors.",
+      ],
+    });
     // Teste se os parâmetros não são Case Sensitive.
-
+    const up = getCharacter("ARYA");
+    const low = getCharacter("arya");
+    expect(compare(up, low)).toBe(true);
     // Teste se ao passar um nome que não está na tabela, a função retorna undefined.
-    
+    expect(getCharacter("Erik")).toBeUndefined();
   });
 });
